@@ -3,7 +3,6 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
-  
   Twitter,
   Linkedin,
   Facebook,
@@ -156,55 +155,6 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* SEO Meta Tags */}
-      <head>
-        <title>{post.title} | Do Zero AI Blog</title>
-        <meta name="description" content={post.excerpt} />
-        <meta
-          name="keywords"
-          content="autonomous execution, AI automation, machine learning, workflow automation, business intelligence"
-        />
-        <link rel="canonical" href={`https://dozero.ai/blog/${post.id}`} />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://dozero.ai/blog/${post.id}`} />
-        <meta property="article:published_time" content="2026-02-15" />
-        <meta property="article:author" content={post.author} />
-        <meta property="article:section" content={post.category} />
-        <meta property="article:tag" content={post.tags.join(", ")} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: post.title,
-            description: post.excerpt,
-            image: "https://dozero.ai/og-image.jpg",
-            datePublished: "2026-02-15",
-            dateModified: "2026-02-15",
-            author: {
-              "@type": "Organization",
-              name: post.author,
-              url: "https://dozero.ai",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "Do Zero AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://dozero.ai/favicon.svg",
-              },
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `https://dozero.ai/blog/${post.id}`,
-            },
-            keywords: post.tags.join(", "),
-            articleSection: post.category,
-          })}
-        </script>
-      </head>
-
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-[100] px-8 py-10 flex justify-between items-center mix-blend-difference">
         <Link

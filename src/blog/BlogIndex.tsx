@@ -76,50 +76,6 @@ const categories = ["All", "AI Automation", "Machine Learning", "Productivity"];
 export default function BlogIndex() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* SEO Meta Tags - Injected via Helmet or similar */}
-      <head>
-        <title>
-          Blog | Do Zero AI - Insights on AI Automation & Autonomous Execution
-        </title>
-        <meta
-          name="description"
-          content="Explore expert insights on AI automation, autonomous execution, machine learning, and workflow optimization. Stay ahead with Do Zero AI's blog."
-        />
-        <meta
-          name="keywords"
-          content="AI automation blog, autonomous execution, machine learning articles, workflow optimization, artificial intelligence insights"
-        />
-        <link rel="canonical" href="https://dozero.ai/blog" />
-        <meta
-          property="og:title"
-          content="Do Zero AI Blog | AI Automation & Autonomous Execution"
-        />
-        <meta
-          property="og:description"
-          content="Expert insights on AI automation, autonomous execution, and workflow optimization."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dozero.ai/blog" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Blog",
-            name: "Do Zero AI Blog",
-            url: "https://dozero.ai/blog",
-            description:
-              "Insights on AI automation, autonomous execution, and workflow optimization",
-            publisher: {
-              "@type": "Organization",
-              name: "Do Zero AI",
-              logo: {
-                "@type": "ImageObject",
-                url: "https://dozero.ai/favicon.svg",
-              },
-            },
-          })}
-        </script>
-      </head>
-
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-[100] px-8 py-10 flex justify-between items-center mix-blend-difference">
         <Link
