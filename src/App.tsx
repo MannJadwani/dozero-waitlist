@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import LandingPage from "./LandingPage";
 import BlogIndex from "./blog/BlogIndex";
 import BlogPost from "./blog/BlogPost";
@@ -11,6 +12,7 @@ export default function App() {
         <Route path="/blog" element={<BlogIndex />} />
         <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
