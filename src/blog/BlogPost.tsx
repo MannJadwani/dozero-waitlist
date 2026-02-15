@@ -154,7 +154,7 @@ export default function BlogPost() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-y-auto">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-[100] px-8 py-10 flex justify-between items-center mix-blend-difference">
         <Link
