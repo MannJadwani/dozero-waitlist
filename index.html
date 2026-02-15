@@ -44,6 +44,18 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://dozero.ai" />
 
+    <!-- Alternate Languages (when you add more) -->
+    <link rel="alternate" hreflang="en" href="https://dozero.ai" />
+    <link rel="alternate" hreflang="x-default" href="https://dozero.ai" />
+
+    <!-- RSS Feed -->
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Do Zero AI Blog"
+      href="https://dozero.ai/rss.xml"
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://dozero.ai" />
@@ -99,16 +111,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <!-- Preconnect for Performance -->
+    <!-- Performance Optimizations -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://doting-dogfish-22.convex.cloud" />
+    <link rel="dns-prefetch" href="https://dozero.ai" />
 
-    <!-- Structured Data / JSON-LD -->
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="preload" href="/src/main.tsx" as="script" crossorigin />
+
+    <!-- Structured Data / JSON-LD - WebSite -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
+        "@id": "https://dozero.ai/#website",
         "name": "Do Zero AI",
         "url": "https://dozero.ai",
         "description": "The next generation autonomous execution platform",
@@ -118,35 +136,171 @@
             "@type": "EntryPoint",
             "urlTemplate": "https://dozero.ai"
           }
+        },
+        "publisher": {
+          "@id": "https://dozero.ai/#organization"
         }
       }
     </script>
+
+    <!-- Structured Data - Organization -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://dozero.ai/#organization",
         "name": "Do Zero AI",
         "url": "https://dozero.ai",
-        "logo": "https://dozero.ai/favicon.svg",
-        "sameAs": ["https://twitter.com/dozeroai"],
-        "description": "Autonomous execution platform for the next generation of AI workflows"
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://dozero.ai/favicon.svg",
+          "width": 100,
+          "height": 100
+        },
+        "sameAs": [
+          "https://twitter.com/dozeroai",
+          "https://github.com/MannJadwani/dozero-waitlist"
+        ],
+        "description": "Autonomous execution platform for the next generation of AI workflows",
+        "foundingDate": "2026",
+        "areaServed": "Global",
+        "knowsAbout": [
+          "Artificial Intelligence",
+          "Machine Learning",
+          "Workflow Automation",
+          "Autonomous Systems",
+          "Business Process Automation"
+        ]
       }
     </script>
+
+    <!-- Structured Data - SoftwareApplication -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Product",
+        "@type": "SoftwareApplication",
+        "@id": "https://dozero.ai/#software",
         "name": "Do Zero AI Platform",
-        "description": "Autonomous execution platform with AI-powered automation",
-        "brand": {
-          "@type": "Brand",
-          "name": "Do Zero AI"
-        },
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
         "offers": {
           "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
           "availability": "https://schema.org/ComingSoon",
-          "validFrom": "2026-02-15"
+          "validFrom": "2026-02-15",
+          "description": "Join the waitlist for early access"
+        },
+        "description": "Autonomous execution platform with AI-powered automation for intelligent workflow management",
+        "softwareVersion": "Alpha",
+        "releaseNotes": "Currently in limited alpha. Join the waitlist for early access.",
+        "featureList": [
+          "Autonomous execution",
+          "AI-powered automation",
+          "Workflow optimization",
+          "Real-time monitoring",
+          "Secure infrastructure"
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "ratingCount": "1",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "author": {
+          "@id": "https://dozero.ai/#organization"
         }
+      }
+    </script>
+
+    <!-- Structured Data - FAQPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Do Zero AI?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Do Zero AI is an autonomous execution platform that uses artificial intelligence to automate and optimize business workflows. It's designed to help organizations transition to intelligent, self-executing systems."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I join the waitlist?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Simply enter your email address on our homepage and click 'Request Access'. You'll be added to our priority waitlist for early access to the platform."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When will Do Zero AI be available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Do Zero AI is currently in limited alpha. We're accepting waitlist signups now and will begin rolling out access to early adopters soon. Join the waitlist to secure your spot."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What makes Do Zero AI different from other automation tools?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Do Zero AI goes beyond traditional rule-based automation by using machine learning to understand context, make decisions, and execute tasks autonomously. It adapts to your workflows and improves over time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Do Zero AI secure?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, security is our top priority. Do Zero AI uses enterprise-grade encryption, secure authentication, and follows best practices for data protection. Your workflows and data remain private and secure."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Structured Data - BreadcrumbList -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dozero.ai"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Structured Data - WebPage -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://dozero.ai/#webpage",
+        "url": "https://dozero.ai",
+        "name": "Do Zero AI | Autonomous Execution Platform",
+        "description": "Join the waitlist for Do Zero AI - The next generation autonomous execution platform",
+        "isPartOf": {
+          "@id": "https://dozero.ai/#website"
+        },
+        "about": {
+          "@id": "https://dozero.ai/#organization"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://dozero.ai/og-image.jpg"
+        },
+        "datePublished": "2026-02-15",
+        "dateModified": "2026-02-15"
       }
     </script>
 
