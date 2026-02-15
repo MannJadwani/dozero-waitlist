@@ -39,7 +39,9 @@ const Navbar = () => (
 );
 
 export default function LandingPage() {
-  const [step, setStep] = useState<"email" | "details" | "success">("email");
+  const [step, setStep] = useState<
+    "email" | "name" | "phone" | "socials" | "success"
+  >("email");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -81,7 +83,7 @@ export default function LandingPage() {
     setLoading(true);
     try {
       await joinWaitlist({ email });
-      setStep("details");
+      setStep("name");
     } catch (error) {
       console.error(error);
     } finally {
@@ -89,7 +91,33 @@ export default function LandingPage() {
     }
   };
 
-  const handleDetailsSubmit = async (e: React.FormEvent) => {
+  const handleNameSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await joinWaitlist({ email, name });
+      setStep("phone");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handlePhoneSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await joinWaitlist({ email, name, phone });
+      setStep("socials");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSocialsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -99,6 +127,36 @@ export default function LandingPage() {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const getStepTitle = () => {
+    switch (step) {
+      case "success":
+        return "You're in";
+      case "name":
+        return "What's your name?";
+      case "phone":
+        return "Phone number?";
+      case "socials":
+        return "Social media?";
+      default:
+        return "Join the era \n of zero";
+    }
+  };
+
+  const getStepSubtitle = () => {
+    switch (step) {
+      case "success":
+        return "We've secured your spot. Stay tuned for the transition.";
+      case "name":
+        return "Step 2 of 4";
+      case "phone":
+        return "Step 3 of 4 (optional)";
+      case "socials":
+        return "Step 4 of 4 (optional)";
+      default:
+        return "Limited alpha spots available. Be the first to transition to autonomous execution.";
     }
   };
 
@@ -166,16 +224,17 @@ export default function LandingPage() {
               id="form-title"
               className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase leading-[0.9] text-white"
             >
-              {step === "success" ? "You're in" : "Join the era \n of zero"}
+              {getStepTitle()}
             </h2>
             <p className="text-white/50 text-sm md:text-base mb-12 max-w-sm mx-auto font-medium">
-              {step === "success"
-                ? "We've secured your spot. Stay tuned for the transition."
-                : "Limited alpha spots available. Be the first to transition to autonomous execution."}
+              {getStepSubtitle()}
             </p>
 
             {step === "email" && (
-              <form
+              <motion.form
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
                 onSubmit={handleEmailSubmit}
                 className="relative group max-w-sm mx-auto"
                 aria-label="Email submission form"
@@ -216,18 +275,21 @@ export default function LandingPage() {
                     />
                   ) : (
                     <>
-                      Request Access <ArrowRight size={14} aria-hidden="true" />
+                      Continue <ArrowRight size={14} aria-hidden="true" />
                     </>
                   )}
                 </button>
-              </form>
+              </motion.form>
             )}
 
-            {step === "details" && (
-              <form
-                onSubmit={handleDetailsSubmit}
-                className="relative group max-w-sm mx-auto space-y-4"
-                aria-label="Profile completion form"
+            {step === "name" && (
+              <motion.form
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                onSubmit={handleNameSubmit}
+                className="relative group max-w-sm mx-auto"
+                aria-label="Name submission form"
               >
                 <label htmlFor="name-input" className="sr-only">
                   Full Name
@@ -242,7 +304,46 @@ export default function LandingPage() {
                   required
                   autoComplete="name"
                   aria-required="true"
+                  disabled={loading}
                 />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="mt-4 w-full bg-brand-primary text-black font-black uppercase py-4 rounded-none text-xs tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2"
+                  aria-label={
+                    loading ? "Saving your name" : "Continue to next step"
+                  }
+                >
+                  {loading ? (
+                    <div
+                      className="w-4 h-4 border-2 border-black border-t-transparent animate-spin rounded-full"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <>
+                      Continue <ArrowRight size={14} aria-hidden="true" />
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStep("phone")}
+                  className="mt-3 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/60 transition-colors"
+                >
+                  Skip this step
+                </button>
+              </motion.form>
+            )}
+
+            {step === "phone" && (
+              <motion.form
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                onSubmit={handlePhoneSubmit}
+                className="relative group max-w-sm mx-auto"
+                aria-label="Phone submission form"
+              >
                 <label htmlFor="phone-input" className="sr-only">
                   Phone Number
                 </label>
@@ -254,7 +355,46 @@ export default function LandingPage() {
                   placeholder="Phone Number"
                   className="w-full bg-white/5 border border-white/10 rounded-none px-8 py-4 text-sm font-bold focus:outline-none focus:border-brand-primary transition-all placeholder:text-white/20 text-center"
                   autoComplete="tel"
+                  disabled={loading}
                 />
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="mt-4 w-full bg-brand-primary text-black font-black uppercase py-4 rounded-none text-xs tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2"
+                  aria-label={
+                    loading ? "Saving your phone" : "Continue to next step"
+                  }
+                >
+                  {loading ? (
+                    <div
+                      className="w-4 h-4 border-2 border-black border-t-transparent animate-spin rounded-full"
+                      aria-hidden="true"
+                    />
+                  ) : (
+                    <>
+                      Continue <ArrowRight size={14} aria-hidden="true" />
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStep("socials")}
+                  className="mt-3 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/60 transition-colors"
+                >
+                  Skip this step
+                </button>
+              </motion.form>
+            )}
+
+            {step === "socials" && (
+              <motion.form
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                onSubmit={handleSocialsSubmit}
+                className="relative group max-w-sm mx-auto"
+                aria-label="Social media submission form"
+              >
                 <label htmlFor="socials-input" className="sr-only">
                   Social Media
                 </label>
@@ -266,15 +406,16 @@ export default function LandingPage() {
                   placeholder="Twitter / LinkedIn"
                   className="w-full bg-white/5 border border-white/10 rounded-none px-8 py-4 text-sm font-bold focus:outline-none focus:border-brand-primary transition-all placeholder:text-white/20 text-center"
                   autoComplete="off"
+                  disabled={loading}
                 />
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-brand-primary text-black font-black uppercase py-4 rounded-none text-xs tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2"
+                  className="mt-4 w-full bg-brand-primary text-black font-black uppercase py-4 rounded-none text-xs tracking-widest hover:bg-white transition-colors flex items-center justify-center gap-2"
                   aria-label={
                     loading
                       ? "Completing your profile"
-                      : "Complete profile registration"
+                      : "Complete registration"
                   }
                 >
                   {loading ? (
@@ -286,7 +427,14 @@ export default function LandingPage() {
                     "Complete Profile"
                   )}
                 </button>
-              </form>
+                <button
+                  type="button"
+                  onClick={() => setStep("success")}
+                  className="mt-3 text-[10px] uppercase tracking-widest text-white/30 hover:text-white/60 transition-colors"
+                >
+                  Skip this step
+                </button>
+              </motion.form>
             )}
 
             {step === "success" && (
