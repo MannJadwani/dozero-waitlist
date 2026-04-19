@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const blogPosts = [
@@ -74,6 +75,12 @@ const blogPosts = [
 const categories = ["All", "AI Automation", "Machine Learning", "Productivity"];
 
 export default function BlogIndex() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const visiblePosts =
+    activeCategory === "All"
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === activeCategory);
+
   return (
     <div className="min-h-screen bg-black text-white overflow-y-auto">
       {/* Navigation */}
@@ -119,11 +126,12 @@ export default function BlogIndex() {
             {categories.map((category, index) => (
               <motion.button
                 key={category}
+                onClick={() => setActiveCategory(category)}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 className={`px-6 py-3 text-xs font-black uppercase tracking-widest transition-all ${
-                  index === 0
+                  activeCategory === category
                     ? "bg-brand-primary text-black"
                     : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/10"
                 }`}
@@ -136,10 +144,10 @@ export default function BlogIndex() {
       </section>
 
       {/* Featured Post */}
-      {blogPosts.find((post) => post.featured) && (
+      {visiblePosts.find((post) => post.featured) && (
         <section className="px-6 pb-16">
           <div className="max-w-6xl mx-auto">
-            {blogPosts
+            {visiblePosts
               .filter((post) => post.featured)
               .map((post) => (
                 <motion.article
@@ -189,7 +197,7 @@ export default function BlogIndex() {
       <section className="px-6 pb-24">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts
+            {visiblePosts
               .filter((post) => !post.featured)
               .map((post, index) => (
                 <motion.article
