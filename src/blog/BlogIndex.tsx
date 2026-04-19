@@ -2,75 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-const blogPosts = [
-  {
-    id: "what-is-autonomous-execution",
-    title: "What is Autonomous Execution? The Complete Guide",
-    excerpt:
-      "Discover how autonomous execution is revolutionizing business workflows and why it matters for your organization in 2026.",
-    category: "AI Automation",
-    author: "Do Zero AI Team",
-    date: "Feb 15, 2026",
-    readTime: "8 min read",
-    featured: true,
-  },
-  {
-    id: "future-of-ai-automation-2025",
-    title: "The Future of AI Automation in 2025",
-    excerpt:
-      "Explore the cutting-edge trends shaping AI automation and how businesses can prepare for the next wave of intelligent systems.",
-    category: "AI Automation",
-    author: "Do Zero AI Team",
-    date: "Feb 14, 2026",
-    readTime: "6 min read",
-    featured: false,
-  },
-  {
-    id: "building-ai-workflows-guide",
-    title: "Building AI Workflows: A Step-by-Step Guide",
-    excerpt:
-      "Learn how to design and implement effective AI workflows that drive real business results.",
-    category: "Machine Learning",
-    author: "Do Zero AI Team",
-    date: "Feb 13, 2026",
-    readTime: "10 min read",
-    featured: false,
-  },
-  {
-    id: "machine-learning-vs-traditional-automation",
-    title: "Machine Learning vs Traditional Automation",
-    excerpt:
-      "Understanding the key differences between ML-powered automation and rule-based traditional systems.",
-    category: "Machine Learning",
-    author: "Do Zero AI Team",
-    date: "Feb 12, 2026",
-    readTime: "7 min read",
-    featured: false,
-  },
-  {
-    id: "workflow-optimization-strategies",
-    title: "5 Workflow Optimization Strategies for 2026",
-    excerpt:
-      "Practical strategies to optimize your business workflows and boost productivity.",
-    category: "Productivity",
-    author: "Do Zero AI Team",
-    date: "Feb 11, 2026",
-    readTime: "5 min read",
-    featured: false,
-  },
-  {
-    id: "ai-agents-enterprise",
-    title: "AI Agents in Enterprise: A Practical Guide",
-    excerpt:
-      "How enterprise organizations can leverage AI agents for complex workflow automation.",
-    category: "AI Automation",
-    author: "Do Zero AI Team",
-    date: "Feb 10, 2026",
-    readTime: "9 min read",
-    featured: false,
-  },
-];
+import { blogPosts } from "./posts";
 
 const categories = ["All", "AI Automation", "Machine Learning", "Productivity"];
 
